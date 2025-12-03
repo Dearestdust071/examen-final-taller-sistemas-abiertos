@@ -1,45 +1,70 @@
-# Book Tracker Mobile
+Book Tracker Mobile
+## Descripción
 
-Cliente móvil para el sistema de gestión de bibliotecas Book Tracker, construido con React Native y Expo.
+Cliente móvil para el sistema de gestión de bibliotecas **Book Tracker**, desarrollado con React Native y Expo.
 
-## Requisitos 
+## Prerequisitos
 
-* Node.js (LTS recomendado)
-* Dispositivo físico con la app **Expo Go** 
-* Backend PERN en ejecución.
+- **Node.js** (versión LTS recomendada)
+- **Dispositivo físico** con la aplicación Expo Go instalada o un emulador (Android Studio / Xcode)
 
-## Configuración
+## Requerimientos
 
-1.  **Instalar dependencias:**
-    ```bash
-    npm install
-    ```
+- Backend PERN en ejecución y accesible desde la red local
+- Dispositivo móvil y computadora conectados a la misma red Wi-Fi
 
-2.  **Configurar conexión al Backend:**
-    * Abre el archivo `src/api/books.ts`.
-    * Busca la constante `API_URL`.
-    * Reemplaza `192.168.1.X` con la dirección IP local de tu computadora (no usar `localhost` si pruebas en dispositivo físico).
-    * Asegúrate de que el backend esté corriendo en el puerto 4000 (o el que hayas configurado).
+## Configuración del Entorno
 
-## ▶Ejecución
+### 1. Instalación de Dependencias
 
-1.  **Iniciar el Backend:**
-    Desde la carpeta del servidor:
-    ```bash
-    npm run dev
-    ```
+Ejecuta el siguiente comando en la raíz del proyecto móvil:
 
-2.  **Iniciar la App Móvil:**
-    Desde la carpeta del cliente móvil:
-    ```bash
-    npx expo start
-    ```
-    * Escanea el código QR con Expo Go (Android) o la app de Cámara (iOS).
-    * O presiona `a` para abrir en emulador Android, `i` para simulador iOS.
+```bash
+npm install
+```
+
+### 2. Configuración de la Conexión al Backend
+
+Para que el dispositivo móvil pueda comunicarse con el servidor local, configura la dirección IP privada de tu computadora. `localhost` no funcionará.
+
+**Identificar tu dirección IP Local:**
+
+- **Windows**: Ejecuta `ipconfig` en la terminal y busca "Dirección IPv4" (ej. 192.168.1.50)
+- **macOS/Linux**: Ejecuta `ifconfig` o `ip a` en la terminal (ej. 192.168.1.50)
+
+> **Nota**: Al iniciar el backend, la consola suele mostrar esta IP.
+
+**Actualizar el archivo de la API:**
+
+1. Abre el archivo: `src/api/books.ts`
+2. Localiza la constante `API_URL`
+3. Reemplaza la IP por la tuya manteniendo el puerto (por defecto 4000)
+
+```typescript
+const API_URL = 'http://192.168.1.50:4000/api';
+```
+
+## Ejecución
+
+### 1. Iniciar el Backend
+
+```bash
+npm run dev
+```
+
+### 2. Iniciar la App Móvil
+
+```bash
+npx expo start --tunnel
+```
+
+Escanea el código QR usando Expo Go (Android) o la Cámara (iOS). 
+
+> **Nota**: Probado únicamente en Android.
 
 ## Funcionalidades
 
-* **Listado:** Visualización de libros y su disponibilidad.
-* **Escáner:** Búsqueda rápida o pre-llenado de formulario mediante código de barras ISBN (Cámara).
-* **Registro:** Creación de nuevos libros.
-* **Gestión Rápida:** Cambio de estado de disponibilidad desde la lista.
+- **Listado de Inventario**: Visualización de libros y estado (Disponible/Prestado)
+- **Escáner de ISBN**: Usa la cámara para buscar libros rápidamente o autocompletar datos al registrar uno nuevo
+- **Registro**: Formulario para añadir nuevos libros al catálogo
+- **Gestión Rápida**: Botón para Prestar/Devolver libros directamente desde la vista de detalle
