@@ -30,14 +30,16 @@ export const BookListScreen = () => {
     }, [])
   );
 
-  const handleToggle = async (id: number) => {
-    try {
-      await toggleAvailability(id);
-      loadBooks(); // Recargar para ver el cambio actualizado
-    } catch (error) {
-      console.error('Error actualizando disponibilidad:', error);
-    }
-  };
+
+  // Se quito la funcionalidad de toggle para la lista en caso de errores
+  // const handleToggle = async (id: number) => {
+  //   try {
+  //     await toggleAvailability(id);
+  //     loadBooks(); // Recargar para ver el cambio actualizado
+  //   } catch (error) {
+  //     console.error('Error actualizando disponibilidad:', error);
+  //   }
+  // };
 
   const renderItem = ({ item }: { item: Book }) => (
     <TouchableOpacity
@@ -49,8 +51,8 @@ export const BookListScreen = () => {
           <Text style={styles.bookTitle} numberOfLines={1}>{item.name}</Text>
           <Text style={styles.bookAuthor} numberOfLines={1}>{item.author}</Text>
           <Text style={styles.bookIsbn}>ISBN: {item.isbn}</Text>
-        </View>
-        <TouchableOpacity onPress={() => handleToggle(item.id)}>
+         </View>
+        <TouchableOpacity /* Funcionalidad toggle  onPress={() => handleToggle(item.id)} */ > 
             <View style={[styles.availabilityBadge, { backgroundColor: item.availability ? '#4CAF50' : '#F44336' }]}>
                 <Text style={styles.availabilityText}>{item.availability ? 'Disp.' : 'No Disp.'}</Text>
             </View>

@@ -7,7 +7,6 @@ import { ScannerScreen } from './src/screens/ScannerScreen';
 import { BookFormScreen } from './src/screens/BookFormScreen';
 import { Book } from './src/types/Book';
 
-// Definición de tipos para la navegación
 export type RootStackParamList = {
   BookList: undefined;
   Scanner: undefined;
@@ -23,7 +22,7 @@ export default function App() {
         <Stack.Navigator
           initialRouteName="BookList"
           screenOptions={{
-            headerShown: false, // Ocultamos el header por defecto ya que implementamos headers personalizados
+            headerShown: false,
             contentStyle: { backgroundColor: '#F5F7FA' },
             animation: 'slide_from_right',
           }}
@@ -33,7 +32,7 @@ export default function App() {
             name="Scanner" 
             component={ScannerScreen} 
             options={{ 
-              animation: 'slide_from_bottom', // Animación diferente para el escáner (modal feel)
+              animation: 'slide_from_bottom',
               presentation: 'modal'
             }} 
           />
